@@ -49,7 +49,7 @@ class HttpBasicAuth
     {
         $header = ['WWW-Authenticate' => 'Basic realm="Basic Auth", charset="UTF-8"'];
 
-        $response = $request->wantsJson()
+        return $request->wantsJson()
             ? response()->json(
                 [
                     'message' => '401 Authorization Required',
@@ -58,8 +58,6 @@ class HttpBasicAuth
                 $header,
             )
             : response('401 Authorization Required', 401, $header);
-
-        return $this->cleanResponse($response);
     }
 
     public function routeShouldBeIgnored(Request $request): bool
@@ -72,14 +70,5 @@ class HttpBasicAuth
         $this->config = $config;
 
         return $this;
-    }
-
-    public function cleanResponse(Response $response)
-    {
-        /**
-         * TODO: clean the response from any secrets we might have
-         */
-
-        return $response;
     }
 }
