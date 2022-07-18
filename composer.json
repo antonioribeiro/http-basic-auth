@@ -1,0 +1,72 @@
+{
+    "name": "area17/http-basic-auth",
+    "type": "library",
+    "description": "HttpBasicAuth service",
+    "keywords": [
+        "area17",
+        "laravel",
+        "twill",
+        "http-basic-auth",
+        "i18n",
+        "i10n"
+    ],
+    "homepage": "https://github.com/area17/http-basic-auth",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "AREA 17",
+            "email": "support@area17.com",
+            "role": "Owner"
+        },
+        {
+            "name": "Antonio Ribeiro",
+            "email": "antonio@area17.com",
+            "role": "Creator"
+        }
+    ],
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.8",
+        "nunomaduro/collision": "^6.2",
+        "nunomaduro/larastan": "^2.1",
+        "orchestra/testbench": "^7.6",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "A17\\HttpBasicAuth\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "A17\\HttpBasicAuth\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse",
+        "test": "./vendor/bin/testbench package:test --parallel --no-coverage",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "post-autoload-dump": [
+            "npx husky install"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "A17\\HttpBasicAuth\\ServiceProvider"
+            ],
+            "aliases": {
+                "HttpBasicAuth": "A17\\HttpBasicAuth\\HttpBasicAuth",
+                "CacheControl": "A17\\HttpBasicAuth\\CacheControl"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -1,0 +1,17 @@
+{
+    "private": true,
+    "scripts": {
+        "precommit": "lint-staged"
+    },
+    "devDependencies": {
+        "@prettier/plugin-php": "^0.18.4",
+        "husky": "^8.0.1",
+        "lint-staged": "^12.4.1",
+        "prettier": "^2.6.2"
+    },
+    "lint-staged": {
+        "**/*": "sh tools/linters.sh conflict-markers",
+        "**/*.{js,jsx,ts,tsx,html,css,php,vue}": "sh tools/linters.sh prettify",
+        "**/*.php": "sh tools/linters.sh phpstan"
+    }
+}
