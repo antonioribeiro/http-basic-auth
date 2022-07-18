@@ -3,9 +3,11 @@
 namespace A17\HttpBasicAuth\Services;
 
 use Closure;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Route;
 
 class HttpBasicAuth
 {
@@ -62,6 +64,19 @@ class HttpBasicAuth
 
     public function routeShouldBeIgnored(Request $request): bool
     {
+        $paths = $this->config['routes']['ignore']['paths'] ?? [];
+
+        foreach ($paths as $path)
+        {
+            if (Str::startsWith($path, '/')) {
+                $path = Str::after($path, '/');
+            }
+
+            if ($request->is($path)) {
+                return true;
+            }
+        }
+
         return false;
     }
 
