@@ -18,7 +18,7 @@ class HttpBasicAuth
         }
 
         /** TODO: add ignored routes to config */
-        if ($this->routeIsOnIgnore($request)) {
+        if ($this->routeShouldBeIgnored($request)) {
             return null;
         }
 
@@ -62,7 +62,7 @@ class HttpBasicAuth
         return response('401 Authorization Required', 401, $header);
     }
 
-    public function routeIsOnIgnore(Request $request): bool
+    public function routeShouldBeIgnored(Request $request): bool
     {
         return false;
     }
