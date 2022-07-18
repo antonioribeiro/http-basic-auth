@@ -17,6 +17,7 @@ class HttpBasicAuth
             return null;
         }
 
+        /** TODO: add ignored routes to config */
         if ($this->routeIsOnIgnore($request)) {
             return null;
         }
